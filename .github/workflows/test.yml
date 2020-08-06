@@ -15,7 +15,7 @@ jobs:
         with:
           ref: '${{ github.head_ref }}'
       - name: Run Gerald
-        uses: Khan/gerald@main
+        uses: Khan/gerald@debug
         env:
           BASE: '${{ github.base_ref }}'
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
