@@ -1,0 +1,16 @@
+name: TEST
+on:
+  issue_comment:
+jobs:
+  gerald:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: '${{ github.ref }}'
+        fetch-depth: '$(node -e "${{github.event.commits}}.length + 1")'
+    - name: Run Gerald
+      uses: Khan/gerald@main
+      env:
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+        EVENT: 'push'
