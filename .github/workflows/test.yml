@@ -1,24 +1,13 @@
-name: TEST
-on:
-  pull_request:
-  issue_comment:
+name: Gerald - Check Comments
+'on':
+  issue_comment
 jobs:
   gerald:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out base branch
-        uses: actions/checkout@v2
-        with:
-          ref: '${{ github.base_ref }}'
-      - name: Check out head branch
-        uses: actions/checkout@v2
-        with:
-          ref: '${{ github.head_ref }}'
-      - run: node -e "console.log(Object.entries('${{github}}'))"
       - name: Run Gerald
-        uses: Khan/gerald@debug
+        uses: Khan/gerald@main
         env:
-          BASE: '${{ github.base_ref }}'
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           ADMIN_PERMISSION_TOKEN: '${{ secrets.GERALD_SECRET }}'
-          EVENT: 'pull_request'
+          EVENT: 'issue_comment'
